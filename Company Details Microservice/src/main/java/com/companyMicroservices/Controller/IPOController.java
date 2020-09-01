@@ -21,13 +21,20 @@ public class IPOController
 	@Autowired
 	IPOServiceImpl iposervice;
 	
+	@GetMapping("/getipo")
+    public List<IPO> getIpo()
+    {
+       return iposervice.getIpo();
+    }
 	
 	
-	 @GetMapping("/getipo/{id}")
-	    public List<IPO> getIpo(@PathVariable int id)
+
+	 @GetMapping("/getipobyid/{id}")
+	    public List<IPO> getIpoById(@PathVariable int id)
 	    {
 	        return iposervice.getIpo(id);
 	    }
+	 
 	 
 	 @PutMapping("/updateipo/{id}")
 	    public IPO updateIpo(@PathVariable int id,  @RequestBody Map<String, String> body)
@@ -47,8 +54,8 @@ public class IPOController
 	 @PostMapping("/insertipo")
 	    public IPO createIpo(@RequestBody Map<String, String> body)
 	    {
-	    	String id = body.get("ipo_id");
-			int ipo_id=Integer.parseInt(id);
+	    	//String id = body.get("ipo_id");
+			//int ipo_id=Integer.parseInt(id);
 			String num_of_shares = body.get("num_of_shares");
 			String D = body.get("open_date");
 			Date open_date=Date.valueOf(D);
@@ -57,7 +64,7 @@ public class IPOController
 			String remarks= body.get("remarks");
 			String company_id = body.get("company_id");
 			int c_id=Integer.parseInt(company_id);
-	        return iposervice.createIpo(ipo_id,num_of_shares,open_date,pps,remarks,c_id);
+	        return iposervice.createIpo(num_of_shares,open_date,pps,remarks,c_id);
 	    }
 	 
 

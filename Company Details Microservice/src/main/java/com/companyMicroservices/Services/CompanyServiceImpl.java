@@ -12,7 +12,12 @@ public class CompanyServiceImpl implements CompanyService
 {
 	@Autowired CompanyRepository companyrepository;
 	
-	 
+	@Override
+    public List<Company> getCompany()
+    {
+    	List<Company> results = companyrepository.findAll();
+		return results;
+    }
 	
 	@Override
 	public List<Company> searchCompany(String pattern)

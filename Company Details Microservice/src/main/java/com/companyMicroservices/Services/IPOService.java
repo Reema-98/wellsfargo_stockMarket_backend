@@ -11,6 +11,6 @@ public interface IPOService {
    public abstract IPO updateIpo(String ipo_id,String num_of_shares,String D,Float price_per_share,String remarks,int company_id);
    // public abstract boolean deleteSector(String id);
     public abstract List<IPO> getIpo(int id);
-   // public abstract IPO sectorById(String id);
-    public abstract IPO createIpo(int ipo_id,String num_of_shares,Date D,Float price_per_share,String remarks,int company_id);
+    public abstract List<IPO> getIpo();
+    public abstract IPO createIpo(String num_of_shares,Date D,Float price_per_share,String remarks,int company_id);
 }

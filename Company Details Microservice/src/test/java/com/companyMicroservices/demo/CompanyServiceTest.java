@@ -27,8 +27,6 @@ public class CompanyServiceTest {
 	@MockBean
 	private CompanyRepository companyrepository;
 
-	
-	
-	
+		
 
 }
