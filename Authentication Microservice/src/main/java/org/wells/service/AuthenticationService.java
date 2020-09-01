@@ -41,21 +41,21 @@ public class AuthenticationService implements UserDetailsService {
         return false;
     }
     
-    public boolean checkExistingUserName(AddUserRequest user) throws DataIntegrityViolationException {
+    public boolean checkExistingUserName(User user) throws DataIntegrityViolationException {
         User user1 = userRepository.findByUsername(user.getUsername());
         if(user1==null)
         	return true;
         return false;
    	}
     
-    public boolean checkExistingEmail(AddUserRequest user) throws DataIntegrityViolationException {
+    public boolean checkExistingEmail(User user) throws DataIntegrityViolationException {
         User user1 = userRepository.findByEmail(user.getEmail());   
         if(user1==null)
         	return true;
         return false;
    	}
     
-    public boolean checkExistingMobile(AddUserRequest user) throws DataIntegrityViolationException {
+    public boolean checkExistingMobile(User user) throws DataIntegrityViolationException {
         User user1 = userRepository.findByMobile(user.getMobile());
         if(user1==null)
         	return true;
@@ -63,18 +63,11 @@ public class AuthenticationService implements UserDetailsService {
    	}
     
     
-	public User save(AddUserRequest userRequest) {
-		User newUser = new User();
-		newUser.setUsername(userRequest.getUsername());
-		newUser.setPassword(userRequest.getPassword());
-		newUser.setFirstName(userRequest.getFirstName());
-		newUser.setLastName(userRequest.getLastName());
-		newUser.setMobile(userRequest.getMobile());
-		newUser.setConfirmed(true);
-		newUser.setEmail(userRequest.getEmail());
-		newUser.setUserType(UserTypes.CONSUMER);
+	public User save(User userRequest) {
+		userRequest.setUserType(UserTypes.CONSUMER);
+		userRequest.setConfirmed(true);
 		
-		return userRepository.save(newUser);
+		return userRepository.save(userRequest);
 	}
     
     

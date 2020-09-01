@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.wells.models.AddUserRequest;
 import org.wells.models.LoginRequest;
 import org.wells.models.LoginResponse;
+import org.wells.models.User;
 import org.wells.service.AuthenticationService;
 import org.wells.util.JwtRequestFilter;
 import org.wells.util.JwtUtil;
@@ -94,7 +95,7 @@ public class AuthenticationController {
 	}
 	
 	@RequestMapping(value = "/signin", method = RequestMethod.POST)
-	public ResponseEntity<?> saveUser(@RequestBody AddUserRequest user) throws DataIntegrityViolationException {
+	public ResponseEntity<?> saveUser(@RequestBody User user) throws DataIntegrityViolationException {
 		
 		boolean value = userDetailsService.checkExistingUserName(user);
 		if(value==false)
