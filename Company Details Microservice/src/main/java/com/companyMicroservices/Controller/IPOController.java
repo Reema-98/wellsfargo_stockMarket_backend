@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -66,6 +67,11 @@ public class IPOController
 			int c_id=Integer.parseInt(company_id);
 	        return iposervice.createIpo(num_of_shares,open_date,pps,remarks,c_id);
 	    }
+	 @DeleteMapping("/deleteipo/{id}")
+		public void deleteIpo(@PathVariable Integer id){
+
+			iposervice.deleteIpo(id);
+		}
 	 
 
 	

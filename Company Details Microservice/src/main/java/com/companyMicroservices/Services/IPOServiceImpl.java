@@ -61,6 +61,10 @@ public class IPOServiceImpl implements IPOService
 	        oldipo.setCompany_id(company_id);	        
 	        return ipoRepository.save(oldipo);
 	    }
+	    @Override
+		 public void deleteIpo(Integer id) {
+	        ipoRepository.deleteById(id);
+	    }
 
 	    
 }
