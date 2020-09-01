@@ -23,14 +23,18 @@ public class CompanyController {
 	@Autowired
 	CompanyRepository companyrepository;
 	
+	@GetMapping("/getcompany")
+    public List<Company> getCompany()
+    {
+       return companyservice.getCompany();
+    }
 	
-	
-	
-	@GetMapping("/getcompany/{id}")
-	public Company getCompany(@PathVariable Integer id){
+	@GetMapping("/getcompanybyid/{id}")
+	public Company getCompanyById(@PathVariable Integer id){
 		return companyservice.getCompanyById(id);
 	}
 	
+
 	@GetMapping("/searchcompany/{pattern}")
 		public List<Company> searchcompany(@PathVariable String pattern)
 		{

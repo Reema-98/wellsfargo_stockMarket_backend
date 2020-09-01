@@ -14,7 +14,7 @@ public class IPOServiceImpl implements IPOService
 {
 	  @Autowired
 	  IPORepository ipoRepository;
-	  
+	  	
 
 	    @Override
 		public List<IPO> getIpo(int id)
@@ -26,10 +26,16 @@ public class IPOServiceImpl implements IPOService
 		}
 	    
 	    @Override
-	    public IPO createIpo(int ipo_id,String num_of_shares,Date D,Float price_per_share,String remarks,int company_id)
+	    public List<IPO> getIpo()
+	    {
+	    	List<IPO> results = ipoRepository.findAll();
+			return results;
+	    }
+	    
+	    @Override
+	    public IPO createIpo(String num_of_shares,Date D,Float price_per_share,String remarks,int company_id)
 	    {
 	    	IPO oldipo = new IPO();
-	    	oldipo.setIpo_id(ipo_id);
 	        oldipo.setNum_of_shares(num_of_shares);
 	        
 	        oldipo.setOpen_date(D);
@@ -54,6 +60,10 @@ public class IPOServiceImpl implements IPOService
 	        oldipo.setRemarks(remarks);
 	        oldipo.setCompany_id(company_id);	        
 	        return ipoRepository.save(oldipo);
+	    }
+	    @Override
+		 public void deleteIpo(Integer id) {
+	        ipoRepository.deleteById(id);
 	    }
 
 	    

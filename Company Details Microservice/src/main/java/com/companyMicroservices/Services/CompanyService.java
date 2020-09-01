@@ -10,6 +10,7 @@ public interface CompanyService {
 
 	public abstract Company getCompanyById(Integer id);
 	public abstract void deleteCompany(Integer id);
+	public abstract List<Company> getCompany();
 	
 
 }
