@@ -94,9 +94,4 @@ public class StockDetailsEntity {
 		this.time = time;
 	}
 
-	@Override
-	public String toString() {
-		return "StockDetailsFromExcel [stock_id=" + stockId + ", companyCode=" + companyCode + ", stockExchangeCode="
-				+ stockExchangeCode + ", pricePerShare=" + pricePerShare + ", date=" + date + ", time=" + time + "]";
-	}	
 }

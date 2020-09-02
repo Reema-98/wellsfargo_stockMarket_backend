@@ -73,7 +73,6 @@ public class ExcelHelper {
 					switch (cellIdx) {
 					case 0:
 						String cc = value.replaceAll("\u00A0", "");
-						System.out.println(cc);
 						stockDetail.setCompanyCode(Integer.parseInt(cc));
 						break;
 
