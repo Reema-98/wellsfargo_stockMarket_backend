@@ -1,10 +1,11 @@
 package com.companyMicroservices.demo;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.sql.Date;
-import java.sql.Time;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -27,6 +28,37 @@ public class CompanyServiceTest {
 	@MockBean
 	private CompanyRepository companyrepository;
 
-		
+	@Test
+	public void getCompanywhenRecordSatisfyingConditionExistTest() {
+		when(companyrepository.findAll())
+				.thenReturn(Stream.of(new Company("board", "mark", "facebook", "788", "zing zing amazing", 89))
+						.collect(Collectors.toList()));
+		List<Company> companylist = companyservice.getCompany();
+		assertEquals(1, companyservice.getCompany().size());
+	}
 
+//	@Test
+//	public void getCompanyByIdtest()
+//	{	int cid=28;
+//		Company company=new Company("board","mark","facebook","788","zing zing amazing",89);
+//		when(companyrepository.findById(cid).get()).thenReturn(company);
+//		assertEquals(company,companyservice.getCompanyById(cid));
+//	}
+
+	@Test
+	public void searchCompanytest() {
+		String pattern = "face";
+		when(companyrepository.searchCompany(pattern))
+				.thenReturn(Stream.of(new Company("board", "mark", "facebook", "788", "zing zing amazing", 89))
+						.collect(Collectors.toList()));
+		List<Company> companylist = companyservice.searchCompany(pattern);
+		assertEquals(1, companyservice.searchCompany(pattern).size());
+	}
+
+	@Test
+	public void deleteCompanyTest() {
+		int cid = 28;
+		companyservice.deleteCompany(cid);
+		verify(companyrepository, times(1)).deleteById(cid);
+	}
 }

@@ -14,9 +14,9 @@ public class StockPriceServiceImpl implements StockPriceService{
 	@Autowired StockPriceRepository stockpricerepository;
 	
 	@Override
-	public List<StockPrice> getStockprice(int company_id,Date fromdate, Date todate)
+	public List<StockPrice> getStockprice(int company_id,Date fromdate, Date todate,int exchange_id)
 	{
-		List<StockPrice> results=stockpricerepository.getStockPrice(company_id, fromdate, todate);
+		List<StockPrice> results=stockpricerepository.getStockPrice(company_id, fromdate, todate, exchange_id);
 		return results;
 	}
 	

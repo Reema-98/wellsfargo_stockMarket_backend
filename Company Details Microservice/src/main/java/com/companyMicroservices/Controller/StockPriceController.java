@@ -8,21 +8,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import com.companyMicroservices.Model.StockPrice;
-import com.companyMicroservices.Services.StockPriceServiceImpl;
+import com.companyMicroservices.Services.StockPriceService;
 
 @RestController
 public class StockPriceController {
 	
-	@Autowired StockPriceServiceImpl stockpriceservice;
+	@Autowired StockPriceService stockpriceservice;
 	
-	@GetMapping("/getstockprice/{cid}/{fdate}/{tdate}")
-	public List<StockPrice> getstockprice(@PathVariable int cid,@PathVariable String fdate,@PathVariable String tdate)
+	@GetMapping("/getstockprice/{cid}/{fdate}/{tdate}/{exchange_id}")
+	public List<StockPrice> getstockprice(@PathVariable int cid,@PathVariable String fdate,@PathVariable String tdate,@PathVariable int exchange_id)
 	{
 		Date fromdate=Date.valueOf(fdate);
 		Date todate=Date.valueOf(tdate);
-		return stockpriceservice.getStockprice(cid, fromdate, todate);
+		return stockpriceservice.getStockprice(cid, fromdate, todate,exchange_id);
 	}
 
 }

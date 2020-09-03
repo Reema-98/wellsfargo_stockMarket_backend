@@ -16,8 +16,6 @@ public interface CompanyRepository extends JpaRepository<Company, Integer>
 	@Query("SELECT c FROM Company c WHERE c.company_name LIKE %?1%")
 	List<Company> searchCompany(String pattern);
 	
-
-	
 	
 
 }
