@@ -47,13 +47,11 @@ public class IPOServiceImpl implements IPOService
 	    }
 	    
 	    @Override
-	    public IPO updateIpo(String ipo_id,String num_of_shares,String D,Float price_per_share,String remarks,int company_id)
+	    public IPO updateIpo(int ipo_id,String num_of_shares,String D,Float price_per_share,String remarks,int company_id)
 	    {
-	    	int id=Integer.parseInt(ipo_id);
-	    	IPO oldipo = ipoRepository.getOne(id);
-	        oldipo.setNum_of_shares(num_of_shares);
-	       
-	     
+//	    	int id=Integer.parseInt(ipo_id);
+	    	IPO oldipo = ipoRepository.getOne(ipo_id);
+	        oldipo.setNum_of_shares(num_of_shares);	     
 	        Date ts=Date.valueOf(D);
 	        oldipo.setOpen_date(ts);
 	        oldipo.setPrice_per_share(price_per_share);

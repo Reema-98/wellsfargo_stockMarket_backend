@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.stereotype.Service;
 import com.companyMicroservices.Model.Company;
+import com.companyMicroservices.Model.IPO;
+
+import java.sql.Date;
 import java.util.List;
 import com.companyMicroservices.Repository.CompanyRepository;
 
@@ -45,6 +48,21 @@ public class CompanyServiceImpl implements CompanyService
           
 	       companyrepository.save(c);
 
+    }
+	
+	@Override
+    public Company updateCompany(int company_id,String company_name, String turnover, String ceo, String board_of_directors, String write_up, String sector_id)
+    {
+//    	int id=Integer.parseInt(ipo_id);
+		int s_id= Integer.parseInt(sector_id);
+    	Company c = companyrepository.getOne(company_id);
+    	c.setCompany_name(company_name);
+		c.setTurnover(turnover);
+		c.setCeo(ceo);
+		c.setBoard_of_directors(board_of_directors);
+		c.setWrite_up(write_up);
+		c.setSector_id(s_id);        	        
+        return companyrepository.save(c);
     }
 	@Override
 	 public Company getCompanyById(Integer id) {
