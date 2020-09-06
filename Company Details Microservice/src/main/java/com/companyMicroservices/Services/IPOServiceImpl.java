@@ -28,7 +28,7 @@ public class IPOServiceImpl implements IPOService
 	    @Override
 	    public List<IPO> getIpo()
 	    {
-	    	List<IPO> results = ipoRepository.findAll();
+	    	List<IPO> results = ipoRepository.findAllIpo();
 			return results;
 	    }
 	    

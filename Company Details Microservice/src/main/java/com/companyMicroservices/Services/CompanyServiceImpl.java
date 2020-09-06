@@ -66,7 +66,7 @@ public class CompanyServiceImpl implements CompanyService
     }
 	@Override
 	 public Company getCompanyById(Integer id) {
-	        return companyrepository.findById(id).get();
+	        return companyrepository.findBycompanyId(id);
 	    }
 	@Override
 	 public void deleteCompany(Integer id) {
