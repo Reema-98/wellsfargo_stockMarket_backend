@@ -18,6 +18,7 @@ import com.wellsfargo.uploadexcel.helper.ExcelHelper;
 import com.wellsfargo.uploadexcel.service.UploadExcelService;
 import com.wellsfargo.uploadexcel.util.UploadExcelUtil;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/excel")
 public class UploadExcelFileController {

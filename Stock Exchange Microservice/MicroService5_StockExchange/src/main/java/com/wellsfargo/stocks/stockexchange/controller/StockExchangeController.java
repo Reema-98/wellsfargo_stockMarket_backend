@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +18,7 @@ import com.wellsfargo.stocks.stockexchange.service.StockExchangeService;
 import com.wellsfargo.stocks.stockexchange.service.StockExchangeServiceImpl;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class StockExchangeController {
 	
 	private StockExchangeService stockExchangeService;
