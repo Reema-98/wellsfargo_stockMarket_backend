@@ -31,7 +31,7 @@ public class UploadExcelFileController {
 	}
 
 	@PostMapping("/upload")
-	  public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
+	  public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("excel") MultipartFile file) {
 	    String message = "";
 	    List<StockDetailsEntity> returnedResults;
 
