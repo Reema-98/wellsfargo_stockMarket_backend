@@ -85,6 +85,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<finalName>docker-stock-exchange</finalName>
 	</build>
 
 </project>
