@@ -1,5 +1,7 @@
 package com.wellsfargo.uploadexcel.helper;
 
+import java.sql.Time;
+
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -73,15 +75,15 @@ public class ExcelHelper {
 					switch (cellIdx) {
 					case 0:
 						String cc = value.replaceAll("\u00A0", "");
-						stockDetail.setCompanyCode(Integer.parseInt(cc));
+						stockDetail.setCompany_id(Integer.parseInt(cc));
 						break;
 
 					case 1:
-						stockDetail.setStockExchangeCode(value);
+						stockDetail.setExchange_id(Integer.parseInt(value));
 						break;
 
 					case 2:
-						stockDetail.setPricePerShare(Float.parseFloat(value));
+						stockDetail.setPrice(Float.parseFloat(value));
 						break;
 
 					case 3:
@@ -93,7 +95,7 @@ public class ExcelHelper {
 						break;
 
 					case 4:
-						stockDetail.setTime(LocalTime.parse(value,  DateTimeFormatter.ISO_TIME));
+						stockDetail.setTime( LocalTime.parse(value,  DateTimeFormatter.ISO_TIME));
 						break;
 
 					default:

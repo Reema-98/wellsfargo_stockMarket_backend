@@ -29,8 +29,8 @@ public class StockDetailsDAOImpl implements StockDetailsDAO {
 		for(StockDetailsEntity singleObjectDetail : stockDetailsFromExcelList) {
 		    currentSession.save(singleObjectDetail);
 		}
-		Query<StockDetailsEntity> theQuery = currentSession.createQuery("from stock", StockDetailsEntity.class); 
+		Query<StockDetailsEntity> theQuery = currentSession.createQuery("from stock_price", StockDetailsEntity.class); 
 		List<StockDetailsEntity> stockDetails = theQuery.getResultList();
-		return stockDetails;
+		return stockDetailsFromExcelList;
 	}
 }

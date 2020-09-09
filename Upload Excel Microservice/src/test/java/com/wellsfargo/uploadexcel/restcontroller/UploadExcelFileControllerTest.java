@@ -35,24 +35,24 @@ class UploadExcelFileControllerTest {
         InputStream targetStream = new FileInputStream(initialFile);
         
         StockDetailsEntity details = new StockDetailsEntity();
-        details.setCompanyCode(1);
-        details.setPricePerShare((float)500);
+        details.setCompany_id(1);
+        details.setPrice((float)500);
         details.setDate(LocalDate.parse("2020-07-09"));
         details.setTime(LocalTime.parse("10:30:00"));
-        details.setStockExchangeCode("BSE");
+        details.setExchange_id(2);
         
         StockDetailsEntity entity = ExcelHelper.excelToStockDetailsFromExcel(targetStream).get(0);
                 
         //Success Scenario
-        assertEquals(entity.getCompanyCode(), details.getCompanyCode(), "company code test failed");
+        assertEquals(entity.getCompany_id(), details.getCompany_id(), "company code test failed");
         assertEquals(entity.getDate(),details.getDate(), "Date check failed");
-        assertEquals(entity.getStockExchangeCode(), details.getStockExchangeCode(), "Stock Exchange code test failed");
+        assertEquals(entity.getExchange_id(), details.getExchange_id(), "Stock Exchange code test failed");
         assertEquals(entity.getTime(), details.getTime(), "Time inserted test failed");
         
         //Failure Scenario
-        assertEquals(entity.getCompanyCode(), 2, "company code test failed");
+        assertEquals(entity.getCompany_id(), 2, "company code test failed");
         assertEquals(entity.getDate(), LocalDate.parse("2020-06-09"), "Date check failed");
-        assertEquals(entity.getStockExchangeCode(), "NSE", "Stock Exchange code test failed");
+        assertEquals(entity.getExchange_id(), "NSE", "Stock Exchange code test failed");
         assertEquals(entity.getTime(),LocalTime.NOON , "Time inserted test failed");
         
     }

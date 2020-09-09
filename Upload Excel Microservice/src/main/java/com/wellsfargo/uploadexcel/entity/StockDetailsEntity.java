@@ -1,6 +1,5 @@
 package com.wellsfargo.uploadexcel.entity;
 
-import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -11,41 +10,44 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity(name="stock")
-@Table(schema = "stock_price", name="stock")
+
+@Entity(name="stock_price")
+@Table(schema = "stock_price")
 public class StockDetailsEntity {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "stock_id")
 	private int stockId;
 	
-	@Column(name = "company_id")
-	private int companyCode;	
-	
-	@Column(name = "exchange_id")
-	private String stockExchangeCode;
-	
 	@Column(name = "price")
-	private float pricePerShare;
-	
+	private float price;
 	@Column(name = "date")
-	private LocalDate date;	
-	
+	private LocalDate date;
 	@Column(name = "time")
 	private LocalTime time;
-
-	public StockDetailsEntity() {}
 	
-	public StockDetailsEntity(int companyCode, String stockExchangeCode, float pricePerShare,
-			LocalDate date, LocalTime time) {
-		this.companyCode = companyCode;
-		this.stockExchangeCode = stockExchangeCode;
-		this.pricePerShare = pricePerShare;
+	@Column(name = "company_id")
+	private Integer company_id;
+	@Column(name = "exchange_id")
+	private Integer exchange_id;
+	
+
+
+	public StockDetailsEntity() {
+
+	}
+
+	public StockDetailsEntity(int stockId, float price, LocalDate date, LocalTime time, Integer company_id, Integer exchange_id) {
+
+		this.stockId = stockId;
+		this.price = price;
 		this.date = date;
 		this.time = time;
+		this.company_id = company_id;
+		this.exchange_id = exchange_id;
 	}
-	
+
 	public int getStockId() {
 		return stockId;
 	}
@@ -54,28 +56,12 @@ public class StockDetailsEntity {
 		this.stockId = stockId;
 	}
 
-	public int getCompanyCode() {
-		return companyCode;
+	public float getPrice() {
+		return price;
 	}
 
-	public void setCompanyCode(Integer companyCode) {
-		this.companyCode = companyCode;
-	}
-
-	public String getStockExchangeCode() {
-		return stockExchangeCode;
-	}
-
-	public void setStockExchangeCode(String stockExchangeCode) {
-		this.stockExchangeCode = stockExchangeCode;
-	}
-
-	public float getPricePerShare() {
-		return pricePerShare;
-	}
-
-	public void setPricePerShare(float pricePerShare) {
-		this.pricePerShare = pricePerShare;
+	public void setPrice(float price) {
+		this.price = price;
 	}
 
 	public LocalDate getDate() {
@@ -90,8 +76,24 @@ public class StockDetailsEntity {
 		return time;
 	}
 
-	public void setTime(LocalTime time) {
-		this.time = time;
+	public void setTime(LocalTime localTime) {
+		this.time = localTime;
+	}
+
+	public Integer getCompany_id() {
+		return company_id;
+	}
+
+	public void setCompany_id(Integer company_id) {
+		this.company_id = company_id;
+	}
+
+	public Integer getExchange_id() {
+		return exchange_id;
+	}
+
+	public void setExchange_id(Integer exchange_id) {
+		this.exchange_id = exchange_id;
 	}
 
 }
