@@ -33,5 +33,4 @@ public class ResponseMessage {
 	public void setStockInsertedDetails(List<StockDetailsEntity> stockInsertedDetails) {
 		this.stockInsertedDetails = stockInsertedDetails;
 	}
-
 }

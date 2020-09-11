@@ -1,7 +1,5 @@
 package com.wellsfargo.uploadexcel.helper;
 
-import java.sql.Time;
-
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -21,14 +19,18 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.tomcat.util.ExceptionUtils;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.wellsfargo.uploadexcel.entity.StockDetailsEntity;
 import com.wellsfargo.uploadexcel.util.UploadExcelUtil;
 
+
 public class ExcelHelper {
 	public static String TYPE = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
 	static String[] HEADERs = { "company_id", "exchange_id", "price", "date", "time" };
+	
+	//This name must be same as the Sheet name
 	static String SHEET = "Sheet";
 
 	public static boolean hasExcelFormat(MultipartFile file) {
@@ -45,6 +47,8 @@ public class ExcelHelper {
 
 			Sheet sheet = workbook.getSheet(SHEET);
 			Iterator<Row> rows = sheet.iterator();
+			
+			boolean firstIteration = true;
 
 			List<StockDetailsEntity> stockDetailsList = new ArrayList<StockDetailsEntity>();
 
@@ -74,16 +78,19 @@ public class ExcelHelper {
 
 					switch (cellIdx) {
 					case 0:
+						if(value=="" && firstIteration==false) {
+							return stockDetailsList;
+						}
 						String cc = value.replaceAll("\u00A0", "");
-						stockDetail.setCompany_id(Integer.parseInt(cc));
+						stockDetail.setCompanyCode(Integer.parseInt(cc));
 						break;
 
 					case 1:
-						stockDetail.setExchange_id(Integer.parseInt(value));
+						stockDetail.setStockExchangeCode(value);
 						break;
 
 					case 2:
-						stockDetail.setPrice(Float.parseFloat(value));
+						stockDetail.setPricePerShare(Float.parseFloat(value));
 						break;
 
 					case 3:
@@ -95,7 +102,7 @@ public class ExcelHelper {
 						break;
 
 					case 4:
-						stockDetail.setTime( LocalTime.parse(value,  DateTimeFormatter.ISO_TIME));
+						stockDetail.setTime(LocalTime.parse(value,  DateTimeFormatter.ISO_TIME));
 						break;
 
 					default:
@@ -103,6 +110,7 @@ public class ExcelHelper {
 					}
 					cellIdx++;
 				}
+				firstIteration = false;
 				stockDetailsList.add(stockDetail);
 			}
 			workbook.close();

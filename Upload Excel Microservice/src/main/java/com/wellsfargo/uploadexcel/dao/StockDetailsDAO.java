@@ -8,4 +8,6 @@ import com.wellsfargo.uploadexcel.entity.StockDetailsEntity;
 
 public interface StockDetailsDAO {
 	public List<StockDetailsEntity> save(List<StockDetailsEntity> stockDetailsFromExcelList);
+
+//	public List<StockDetailsEntity> findAll();
 }
