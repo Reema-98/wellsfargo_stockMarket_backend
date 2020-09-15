@@ -1,0 +1,27 @@
+node{
+   
+   stage('Github Repository Checkout'){
+       git 'https://github.com/tantrojan/stockMarket-Authentication.git'
+   }
+   
+   stage('Mvn Package'){
+        sh label: '', script: 'mvn clean package'
+       }
+       
+    stage('Build Docker Image'){
+        
+     sh 'docker build -t lostground97/myapp .'
+   }
+   
+   stage('Push Docker Image'){
+    withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubpwd')]) {
+     sh "docker login -u lostground97 -p ${dockerHubpwd}"
+        
+    }
+     sh 'docker push lostground97/myapp'
+   }
+   
+   stage('Run Container on Dev Server'){
+     sh 'docker run -p 8081:8081 -d --name myapp lostground97/myapp:latest'
+     }
+}
