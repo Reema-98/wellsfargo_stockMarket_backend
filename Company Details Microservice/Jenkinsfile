@@ -1,6 +1,6 @@
 node{
    
-   stage('SCM Checkout'){
+   stage('Github Repository Checkout'){
        git 'https://github.com/Reema-98/Company-Microservices--backend.git'
    }
    
